@@ -55,8 +55,6 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    height: 100%;
-    width: 100%;
     color: rgb(107, 8, 8);
     background-color: rgba(0, 0, 0, 0.829);
   }
@@ -66,4 +64,11 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
