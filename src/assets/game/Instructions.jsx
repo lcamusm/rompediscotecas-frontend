@@ -1,6 +1,6 @@
 import Header from "../common/Header";
 
-function Instructions(props) {
+function Instructions() {
   return (
     <div className="instructions">
         <Header/>

@@ -11,7 +11,7 @@ function App() {
       <div>
         <img src={imagenPrincipal} className='imagen-principal'/>
       </div>
-      <h1>Ataque</h1>
+      <h1>DCConquistador</h1>
       <h2>La odisea de conquistar la región Metropolitana</h2>
     </div>
   )

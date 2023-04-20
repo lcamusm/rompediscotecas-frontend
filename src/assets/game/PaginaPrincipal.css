@@ -1,0 +1,33 @@
+.principal {
+    background-color: brown;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 626px;
+    padding: auto;
+}
+
+.parrafo {
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    padding: 25px;
+    text-align: justify;
+}
+
+.contenido {
+    margin: 1%;
+}
+
+.tabla {
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1.1;
+    padding: 25px;
+    text-align: justify;
+    margin-left: 420px;
+}
