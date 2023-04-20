@@ -1,20 +1,14 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1325px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
-.logo {
+.imagen-principal {
   height: auto;
-  border-radius: 5%;
+  padding-top: 4%;
 }
-/* .logo:hover {
-  filter: drop-shadow(0 0 2em #ff64a5aa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #fb61b6aa);
-} */
 
 @keyframes logo-spin {
   from {

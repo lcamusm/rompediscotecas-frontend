@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import imagenPrincipal from './assets/img/ataque-inicio.jpg'
 import './App.css'
+import Header from './Header'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <div className="App">
+      <Header />
       <div>
-        <img src={imagenPrincipal} className="logo" alt="Vite logo" />
+        <img src={imagenPrincipal} className='imagen-principal'/>
         {/* <a href="https://reactjs.org" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a> */}
