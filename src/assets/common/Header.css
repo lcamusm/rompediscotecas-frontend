@@ -1,0 +1,15 @@
+header {
+    background-color: #0e8878;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    padding: 11px;
+}
+
+.logo {
+    height: 50px;
+    border-radius: 100%;
+    margin-left: 10px;
+  }
