@@ -10,13 +10,13 @@ function PaginaPrincipal() {
             <p className="parrafo">DCConquistador es un juego de estrategia y habilidad, en el que cada jugador debe cumplir un objetivo distinto
                 para ganar, asignado de forma aleatoria al comenzar la partida. El juego se desarrolla en un tablero que
                 representa la ciudad de Santiago, Chile. La cantidad máxima de jugadores por partida son 4, donde cada uno de
-                ellos tendrá un ejercito específico y contará con una cierta cantidad de comunas, donde desplegará sus tropas.
+                ellos tendrá un ejército específico y contará con una cierta cantidad de comunas, donde desplegará sus tropas.
                 Algunos de los objetivos que se pueden cumplir son:
             </p>
             <div className="tabla">
                 <ul>
-                    <li>Agrupar 50 ejercitos en Pudahuel</li>
-                    <li>Eliminar al ejercito rojo</li>
+                    <li>Agrupar 50 ejércitos en Pudahuel</li>
+                    <li>Eliminar al ejército rojo</li>
                     <li>Conquistar todo el sector oriente</li>
                 </ul>
             </div>

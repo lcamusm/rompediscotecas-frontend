@@ -6,7 +6,6 @@ import Luki from '../img/luki.jpg'
 function Equipo() {
     return (
         <div className='page-container Equipo'>
-            <Header/>
             <div className='titulo'>
                 <h1>Equipo</h1>
                 <h2>Un poco acerca de nosotros :)</h2>
