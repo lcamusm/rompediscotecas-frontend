@@ -1,5 +1,5 @@
 import { useState } from "react";
-import mapa from '../img/logo.jpg';
+import mapa from '../img/mapa.png'
 import './ShowMap.css';
 
 function ShowMap() {

@@ -1,0 +1,14 @@
+.instructions {
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+}
+
+.parrafo-instructions {
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 30px;
+    padding: 25px;
+    text-align: justify;
+}
