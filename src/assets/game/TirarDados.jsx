@@ -14,9 +14,19 @@ function TirarDados() {
   }
 
   return (
-    <div className='dados'>
-      <Dado value={dado1} />
-      <Dado value={dado2} />
+    <div className='boton-dados'>
+      <h3>Ahora que sabes jugar...</h3>
+      <h4>¡Prueba como te va atacando!</h4>
+      <div className='dados-container'>
+        <div className='dado'>
+          <Dado value={dado1} />
+          <h6>Dado Atacante</h6>
+        </div>
+        <div className='dado'>
+          <Dado value={dado2} />
+          <h6>Dado Defensor</h6>
+        </div>
+      </div>
       <button onClick={tirarDado}>Tirar dados</button>
     </div>
   );

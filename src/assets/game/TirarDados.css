@@ -1,15 +1,19 @@
-.Dado {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    text-align: center;
-    margin-right: 10px;
-    cursor: pointer;
+.boton-dados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px;
   }
-  
-  .Dado img {
-    width: 60%;
-    height: 60%;
+
+.dados-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
+
+.dado {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+  } 
