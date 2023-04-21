@@ -1,5 +1,5 @@
 import './PaginaPrincipal.css'
-import ShowMap from './ShowMap'
+import NewGame from './NewGame'
 
 
 function PaginaPrincipal() {
@@ -24,7 +24,7 @@ function PaginaPrincipal() {
                 con el fin de conquistar nuevos territorios y poder cumplir con su objetivo. Gana la partida el jugador que
                 cumpla con su objetivo antes que los demás o que logre conquistar toda la ciudad.
             </p>
-            <ShowMap/>
+            <NewGame/>
         </div>
     </>
   )
