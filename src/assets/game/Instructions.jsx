@@ -1,9 +1,7 @@
-import Header from "../common/Header";
 
-function Instructions(props) {
+function Instructions() {
   return (
-    <div className="instructions">
-        <Header/>
+    <div className="page-container instructions">
         <h2>Instructions</h2>
         <p>Click on an image to earn points, but don't click on any more than once!</p>
     </div>
