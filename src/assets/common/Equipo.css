@@ -1,9 +1,15 @@
+.Equipo {
+  background-color: rgb(44, 15, 110);
+  color: white;
+}
+  
   h3 {
     color: white;
   }
 
   p {
     color: white;
+    font-size: 15px;
   }
   
   .nosotros {

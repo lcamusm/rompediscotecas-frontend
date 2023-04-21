@@ -5,7 +5,7 @@ import Luki from '../img/luki.jpg'
 
 function Equipo() {
     return (
-        <main className='Equipo'>
+        <div className='page-container Equipo'>
             <Header/>
             <div className='titulo'>
                 <h1>Equipo</h1>
@@ -37,7 +37,7 @@ function Equipo() {
                     <p>Minor: Industrial</p>
                 </div>
             </div>
-        </main>
+        </div>
     )
 }
 
