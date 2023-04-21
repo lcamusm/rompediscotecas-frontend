@@ -16,8 +16,12 @@ function Equipo() {
                     <img src={Erri}/>
                 </div>
                 <div className='texto'>
-                    <h3>Vicente Errázuriz</h3>
-                    <p>Descripción</p>
+                    <p>Nombre: Vicente Errázuriz Labbé</p>
+                    <p>Fecha de nacimiento: 6 de julio de 2001</p>
+                    <p>Lugar de nacimiento: Rancagua, Chile</p>
+                    <p>Estudios: Estudiante de Ingeniería Civil en la Universidad Católica de Chile</p>
+                    <p>Major: Ingeniería de Software</p>
+                    <p>Minor: Industrial</p>
                 </div>
             </div>
             <div className='nosotros'>
@@ -25,8 +29,12 @@ function Equipo() {
                     <img src={Luki}/>
                 </div>
                 <div className='texto'>
-                    <h3>Lucas Camus</h3>
-                    <p>Descripción</p>
+                    <p>Nombre: Lucas Camus Márquez</p>
+                    <p>Fecha de nacimiento: 18 de agosto de 2001</p>
+                    <p>Lugar de nacimiento: Santiago, Chile</p>
+                    <p>Estudios: Estudiante de Ingeniería Civil en la Universidad Católica de Chile</p>
+                    <p>Major: Ingeniería de Software</p>
+                    <p>Minor: Industrial</p>
                 </div>
             </div>
         </main>
