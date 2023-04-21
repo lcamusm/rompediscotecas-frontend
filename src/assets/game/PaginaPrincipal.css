@@ -1,0 +1,23 @@
+.parrafo {
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 30px;
+    padding: 25px;
+    text-align: justify;
+}
+
+.contenido {
+    background-color: rgb(44, 15, 110);
+    color: white;
+}
+
+.tabla {
+    display: flex;
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1.1;
+    padding: 25px;
+    text-align: justify;
+    margin-left: 420px;
+}

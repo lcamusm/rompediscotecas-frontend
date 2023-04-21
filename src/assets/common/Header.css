@@ -4,8 +4,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 98%;
-    padding: 11px;
+    padding: 13px;
 }
 
 .logo {

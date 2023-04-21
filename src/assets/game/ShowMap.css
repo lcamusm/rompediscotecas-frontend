@@ -1,0 +1,16 @@
+.mapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+}
+
+.button {
+    margin-bottom: 10px;
+}
+
+.imagen {
+    border-radius: 8px;
+}
