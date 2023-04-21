@@ -1,6 +1,8 @@
+@import url('/src/assets/common/index.css');
+
 header {
-    background-color: #0e8878;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
