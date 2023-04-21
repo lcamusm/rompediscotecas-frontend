@@ -1,0 +1,55 @@
+.Equipo {
+  background-color: rgb(44, 15, 110);
+  color: white;
+}
+  
+  h3 {
+    color: white;
+  }
+
+  p {
+    color: white;
+    font-size: 15px;
+  }
+  
+  .nosotros {
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 100px;
+  }
+
+  .contenedor {
+    width: 150px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .contenedor img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .contenedor, .texto {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+  }
+
+
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  
