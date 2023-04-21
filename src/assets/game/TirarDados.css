@@ -1,0 +1,19 @@
+.boton-dados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+
+.dados-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.dado {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+  } 

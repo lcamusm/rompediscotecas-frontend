@@ -1,0 +1,16 @@
+@import url('/src/assets/common/index.css');
+
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px;
+}
+
+.logo {
+    height: 50px;
+    border-radius: 100%;
+    margin-left: 10px;
+  }

@@ -1,0 +1,57 @@
+@import url('/src/assets/common/index.css');
+
+.Equipo {
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+}
+  
+  h3 {
+    color: var(--secondary-color);
+  }
+
+  p {
+    color: var(--secondary-color);
+    font-size: 15px;
+  }
+  
+  .nosotros {
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 100px;
+  }
+
+  .contenedor {
+    width: 150px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .contenedor img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .contenedor, .texto {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+  }
+
+
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  
