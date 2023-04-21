@@ -1,0 +1,15 @@
+.Dado {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .Dado img {
+    width: 60%;
+    height: 60%;
+  }
+  
