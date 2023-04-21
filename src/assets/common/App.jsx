@@ -5,7 +5,7 @@ import './App.css'
 function App() {
 
   return (
-    <div className="App">
+    <div className="page-container App">
       <div>
         <img src={imagenPrincipal} className='imagen-principal'/>
       </div>
