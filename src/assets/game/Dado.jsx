@@ -5,6 +5,7 @@ import dado3 from '../img/dados/dado3.png';
 import dado4 from '../img/dados/dado4.png';
 import dado5 from '../img/dados/dado5.png';
 import dado6 from '../img/dados/dado6.png';
+import './Dado.css'
 
 const diceImages = [
   dado1,
@@ -17,10 +18,9 @@ const diceImages = [
 
 function Dice(props) {
   return (
-    <img
+    <img className='dado-img'
       src={diceImages[props.value - 1]}
       alt={`Dado con valor ${props.value}`}
-      style={{ width: '50px', height: '50px' }}
     />
   );
 }
