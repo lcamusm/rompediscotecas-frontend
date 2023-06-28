@@ -7,6 +7,7 @@ function Header() {
     <header>
       <img src={logo} className="logo"/>
       <a href="/">Inicio</a>
+      <a href="/login">Log in</a>
       <a href="/el-juego">El juego</a>
       <a href="/instrucciones">Instrucciones</a>
       <a href="/nosotros">Nosotros</a>

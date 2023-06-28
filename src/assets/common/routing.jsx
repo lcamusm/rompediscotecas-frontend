@@ -3,6 +3,7 @@ import App from './App';
 import PaginaPrincipal from '../game/PaginaPrincipal';
 import Equipo from './Equipo';
 import Instructions from '../game/Instructions';
+import Login from '../profile/Login';
 
 function Routing(){
     return (
@@ -13,6 +14,7 @@ function Routing(){
                 <Route path="/el-juego" element={<PaginaPrincipal/>}/>
                 <Route path="/nosotros" element={<Equipo/>}/>
                 <Route path="/instrucciones" element={<Instructions/>}/>
+                <Route path="/login" element = {<Login/>}/>
             </Routes>
         </BrowserRouter>
         </>
