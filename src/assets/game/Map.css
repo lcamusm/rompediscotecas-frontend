@@ -1,4 +1,11 @@
-.map-img {
-    width: 750px;
-    height: 820px;
+path:hover {
+  fill: #f00;
+}
+
+.info-comuna {
+  position: absolute;
+  top: 300px;
+  right: 50px;
+  background-color: black;
+  padding: 10px;
 }
