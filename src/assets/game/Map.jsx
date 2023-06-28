@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import "./Map.css";
+import Dado from "./Dado";
 
 const Map = () => {
   const [hoveredComuna, setHoveredComuna] = useState(null);
   const [selectedComunas, setSelectedComunas] = useState([]);
+  const [attackMode, setAttackMode] = useState(false);
+  const [showDice, setShowDice] = useState(false);
+  const [dice, setDice] = useState(1);
+  const [underAttack, setUnderAttack] = useState(false);
 
   const handleComunaClick = (comuna) => {
     if (selectedComunas.includes(comuna)) {
       setSelectedComunas(selectedComunas.filter((c) => c !== comuna));
+      setAttackMode(false);
+      setShowDice(false);
     } else if (selectedComunas.length < 2) {
       setSelectedComunas([...selectedComunas, comuna]);
     }
@@ -20,6 +27,28 @@ const Map = () => {
 
   const handleMouseOut = () => {
     setHoveredComuna(null);
+  };
+
+  const handleAttackClick = () => {
+    const [comuna1, comuna2] = selectedComunas;
+    //Hacer colsulta a la api para ver si el ataue es valido
+    //Si es valido, hacer el ataque
+    //Por ahora sólo se puede atacar con un dado
+    setAttackMode(true);
+    setShowDice(true);
+    setDice(1);
+  };
+
+  const handleCancelClick = () => {
+    setAttackMode(false);
+    setShowDice(false);
+    setSelectedComunas([]);
+  };
+
+  const handleDiceClick = () => {
+    setAttackMode(false);
+    const value = Math.floor(Math.random() * 6) + 1;
+    setDice(value);
   };
 
   return (
@@ -439,11 +468,29 @@ const Map = () => {
           <span>Player: Vicente</span>
         </div>
       )}
-      <div className="button-container">
-        {selectedComunas.length === 2 && (
-          <button className="attack-button">Attack</button>
-        )}
-      </div>
+      {selectedComunas.length === 2 && !attackMode && !showDice && (
+        <div className="button-container">
+          <button className="attack-button" onClick={handleAttackClick}>
+            Attack
+          </button>
+        </div>
+      )}
+      {attackMode && selectedComunas.length === 2 && (
+        <div className="button-container">
+          <button className="dice-button" onClick={handleDiceClick}>
+            Tirar Dado
+          </button>
+          <button className="dice-button" onClick={handleCancelClick}>
+            Cancelar
+          </button>
+        </div>
+      )}
+
+      {showDice && (
+        <div className="dice-container">
+          <Dado value={dice} />
+        </div>
+      )}
     </div>
   );
 };
