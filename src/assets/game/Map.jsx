@@ -7,8 +7,9 @@ const Map = () => {
   const [selectedComunas, setSelectedComunas] = useState([]);
   const [attackMode, setAttackMode] = useState(false);
   const [showDice, setShowDice] = useState(false);
-  const [dice, setDice] = useState(1);
-  const [underAttack, setUnderAttack] = useState(false);
+  const [dice1, setDice1] = useState(1);
+  const [dice2, setDice2] = useState(1);
+  const [diceThrow, setDiceThrow] = useState(false);
 
   const handleComunaClick = (comuna) => {
     if (selectedComunas.includes(comuna)) {
@@ -36,19 +37,33 @@ const Map = () => {
     //Por ahora sólo se puede atacar con un dado
     setAttackMode(true);
     setShowDice(true);
-    setDice(1);
+    setDice1(1);
+    setDice2(1);
   };
 
   const handleCancelClick = () => {
     setAttackMode(false);
     setShowDice(false);
     setSelectedComunas([]);
+    setDiceThrow(false);
   };
 
   const handleDiceClick = () => {
     setAttackMode(false);
     const value = Math.floor(Math.random() * 6) + 1;
-    setDice(value);
+    const value2 = Math.floor(Math.random() * 6) + 1;
+    setDice1(value);
+    setDice2(value2);
+    setDiceThrow(true);
+    setTimeout(() => {
+      if (value > value2) {
+        //Ataque exitoso
+        alert("¡Ganaste el ataque!");
+      } else {
+        //Ataque fallido
+        alert("El defensor fue más fuerte que tú :(");
+      }
+    }, 500);
   };
 
   return (
@@ -461,6 +476,9 @@ const Map = () => {
           }
         />
       </svg>
+      <div className="end-container">
+        <button>End Turn</button>
+      </div>
       {hoveredComuna && (
         <div className="info-comuna">
           <span>Commune: {hoveredComuna}</span>
@@ -478,17 +496,31 @@ const Map = () => {
       {attackMode && selectedComunas.length === 2 && (
         <div className="button-container">
           <button className="dice-button" onClick={handleDiceClick}>
-            Tirar Dado
+            Throw Dice
           </button>
           <button className="dice-button" onClick={handleCancelClick}>
-            Cancelar
+            Exit
           </button>
         </div>
       )}
 
       {showDice && (
         <div className="dice-container">
-          <Dado value={dice} />
+          <div className="dice">
+            <Dado value={dice1} />
+            <h5>Your Dice</h5>
+          </div>
+          <div className="dice">
+            <Dado value={dice2} />
+            <h5>Defenders Dice</h5>
+          </div>
+        </div>
+      )}
+      {diceThrow && (
+        <div className="button-container">
+          <button className="dice-button" onClick={handleCancelClick}>
+            Keep attacking
+          </button>
         </div>
       )}
     </div>

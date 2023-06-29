@@ -15,13 +15,16 @@ path:hover {
 
 .dice-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 330px;
-  left: 85px;
+  top: 270px;
+  left: 35px;
   padding: 10px;
+}
+
+.dice {
+  padding: 8px;
 }
 
 .selected {
@@ -58,4 +61,13 @@ path:hover {
 
 .dice-button {
   margin: 8px;
+}
+
+.end-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 420px;
+  right: 80px;
+  padding: 10px;
 }
