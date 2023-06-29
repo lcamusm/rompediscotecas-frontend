@@ -1,0 +1,73 @@
+path:hover {
+  fill: red;
+  cursor: pointer;
+}
+
+.info-comuna {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 300px;
+  right: 50px;
+  background-color: rgb(61, 55, 55);
+  padding: 10px;
+}
+
+.dice-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 270px;
+  left: 35px;
+  padding: 10px;
+}
+
+.dice {
+  padding: 8px;
+}
+
+.selected {
+  fill: red;
+  stroke: black;
+  stroke-width: 9;
+}
+
+.selected:hover {
+  fill: red;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 400px;
+  left: 50px;
+  padding: 10px;
+}
+
+.attack-button {
+  background-color: black;
+  border: 3px red solid;
+  color: red;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.dice-button {
+  margin: 8px;
+}
+
+.end-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 420px;
+  right: 80px;
+  padding: 10px;
+}
