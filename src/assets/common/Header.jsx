@@ -13,6 +13,7 @@ function Header() {
       <a href="/el-juego">El juego</a>
       <a href="/instrucciones">Instrucciones</a>
       <a href="/nosotros">Nosotros</a>
+      <a href="/play">Jugar</a>
       <br></br>
       <LogoutButton />
     </header>
