@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Map.css";
 import Dado from "./Dado";
+import axios from "axios";
 
 const Map = () => {
   const [hoveredComuna, setHoveredComuna] = useState(null);
@@ -10,6 +11,9 @@ const Map = () => {
   const [dice1, setDice1] = useState(1);
   const [dice2, setDice2] = useState(1);
   const [diceThrow, setDiceThrow] = useState(false);
+  const [comunas, setComunas] = useState([]);
+  const [player, setPlayer] = useState(null);
+  const [troop, setTroop] = useState(null);
 
   const handleComunaClick = (comuna) => {
     if (selectedComunas.includes(comuna)) {
@@ -23,6 +27,9 @@ const Map = () => {
 
   const handleMouseOver = (event) => {
     const comunaName = event.target.getAttribute("name");
+    const comuna = comunas.find((comuna) => comuna.name === comunaName);
+    setPlayer(comuna.Player.name);
+    setTroop(comuna.Troop.contador);
     setHoveredComuna(comunaName);
   };
 
@@ -64,6 +71,24 @@ const Map = () => {
         alert("El defensor fue más fuerte que tú :(");
       }
     }, 500);
+  };
+
+  const handleEndTurnClick = () => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const info = res.data;
+        setComunas(info);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -477,13 +502,13 @@ const Map = () => {
         />
       </svg>
       <div className="end-container">
-        <button>End Turn</button>
+        <button onClick={handleEndTurnClick}>End Turn</button>
       </div>
       {hoveredComuna && (
         <div className="info-comuna">
           <span>Commune: {hoveredComuna}</span>
-          <span>Troops: 5</span>
-          <span>Player: Vicente</span>
+          <span>Troops: {troop}</span>
+          <span>Player: {player}</span>
         </div>
       )}
       {selectedComunas.length === 2 && !attackMode && !showDice && (
