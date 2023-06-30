@@ -23,7 +23,7 @@ function Login() {
             const access_token = response.data.access_token;
             localStorage.setItem('token', access_token);
             setToken(access_token);
-            console.log("Token almacenado en localStorage: ", token);
+            console.log("Token almacenado en localStorage: ", access_token);
         }) .catch((error) => {
             console.error("Error al iniciar sesión: ", error);
             setError(true);
