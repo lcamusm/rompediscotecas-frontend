@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Map.css";
 import Dado from "./Dado";
 import axios from "axios";
@@ -14,6 +14,11 @@ const Map = () => {
   const [comunas, setComunas] = useState([]);
   const [player, setPlayer] = useState(null);
   const [troop, setTroop] = useState(null);
+  const [availableTroops, setAvailableTroops] = useState(0);
+  const [comunaClickeada, setComunaClickeada] = useState(null);
+  const [playerClickeado, setPlayerClickeado] = useState(null);
+  const [troopClickeada, setTroopClickeada] = useState(null);
+  const [troopsToAdd, setTroopsToAdd] = useState(0);
 
   const handleComunaClick = (comuna) => {
     if (selectedComunas.includes(comuna)) {
@@ -23,6 +28,44 @@ const Map = () => {
     } else if (selectedComunas.length < 2) {
       setSelectedComunas([...selectedComunas, comuna]);
     }
+  };
+
+  useEffect(() => {
+    if (selectedComunas.length === 1) {
+      const comunaName = selectedComunas[0];
+      const comuna = comunas.find((comuna) => comuna.name === comunaName);
+      setComunaClickeada(comunaName);
+      setPlayerClickeado(comuna.Player.name);
+      setTroopClickeada(comuna.Troop.contador);
+      setAvailableTroops(comuna.Player.newTroops);
+    }
+  }, [selectedComunas]);
+
+  const handleAddClick = () => {
+    const token = localStorage.getItem("token");
+    const comuna = comunas.find((comuna) => comuna.name === comunaClickeada);
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/troops/assing`,
+        {
+          communeID: comuna.id,
+          numTroops: troopsToAdd,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        const troop = res.data.troop;
+        const infoCommunes = res.data.communes;
+        setComunas(infoCommunes);
+        setTroopClickeada(troop.contador);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleMouseOver = (event) => {
@@ -75,7 +118,6 @@ const Map = () => {
 
   const handleEndTurnClick = () => {
     const token = localStorage.getItem("token");
-
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
         headers: {
@@ -504,6 +546,31 @@ const Map = () => {
       <div className="end-container">
         <button onClick={handleEndTurnClick}>End Turn</button>
       </div>
+      {selectedComunas.length === 1 && (
+        <div className="assing-container">
+          <div className="info-comuna-assing">
+            <span>Commune: {comunaClickeada}</span>
+            <span>Troops: {troopClickeada}</span>
+            <span>Player: {playerClickeado}</span>
+          </div>
+          <div className="dialog-container">
+            <div className="dialog-content">
+              <h4 className="add-title">Available Troops: {availableTroops}</h4>
+              <h4 className="add-title">Choose Number of Troops to Add</h4>
+              <input
+                className="add-input"
+                type="number"
+                value={troopsToAdd}
+                min="0"
+                onChange={(e) => setTroopsToAdd(Number(e.target.value))}
+              />
+              <button className="add-button" onClick={handleAddClick}>
+                Add Troops
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {hoveredComuna && (
         <div className="info-comuna">
           <span>Commune: {hoveredComuna}</span>
