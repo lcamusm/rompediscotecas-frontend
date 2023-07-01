@@ -18,7 +18,7 @@ function WaitingRoom() {
                 const payload = JSON.parse(atob(token.split('.')[1]));
                 const userId = payload.sub;
                 const response1 = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/players/${userId}`,
+                    `${import.meta.env.VITE_BACKEND_URL}/players/`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
