@@ -10,13 +10,12 @@ function WaitingRoom() {
     const [isCreator, setIsCreator] = useState(false);
     const [playerCount, setPlayerCount] = useState(0);
     const [hasJoined, setHasJoined] = useState(false);
+    const [gameData, setGameData] = useState(null);
 
     useEffect(() => {
         const fetchGameInfo = async () => {
             const token = localStorage.getItem('token');  
             try {
-                const payload = JSON.parse(atob(token.split('.')[1]));
-                const userId = payload.sub;
                 const response1 = await axios.get(
                     `${import.meta.env.VITE_BACKEND_URL}/players/`,
                     {
@@ -41,6 +40,7 @@ function WaitingRoom() {
                 setPlayerCount(response2.data.players.length);
                 setIsLoading(false);
                 setHasJoined(false);
+                setGameData(response2.data);
             } catch (error) {
                 console.error("Error al obtener información de la partida: ", error);
                 setHasJoined(true);
@@ -51,7 +51,35 @@ function WaitingRoom() {
     }, [gameId]);
 
     const handleStartGame = async() => {
+        const token = localStorage.getItem('token');
         try {
+            console.log(gameData.players);
+            const response1 = await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/cards/objetivo`,
+                {
+                    "numberPlayers": gameData.players.length,
+                    "playersID": gameData.players
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Objetivos asignados: ", response1.data);
+            const response2 = await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/boards/create-board`,
+                {
+                    "numberPlayers": gameData.players.length,
+                    "playersID": gameData.players,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Tablero creado: ", response2.data);
             navigate('/board');
         } catch (error) {
             console.error("Error al iniciar la partida: ", error);
