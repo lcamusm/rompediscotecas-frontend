@@ -19,12 +19,16 @@ const Map = () => {
   const [playerClickeado, setPlayerClickeado] = useState(null);
   const [troopClickeada, setTroopClickeada] = useState(null);
   const [troopsToAdd, setTroopsToAdd] = useState(0);
+  const [playerActual, setPlayerActual] = useState(null);
+  const [comuna1, setComuna1] = useState(null);
+  const [comuna2, setComuna2] = useState(null);
 
   const handleComunaClick = (comuna) => {
     if (selectedComunas.includes(comuna)) {
       setSelectedComunas(selectedComunas.filter((c) => c !== comuna));
       setAttackMode(false);
       setShowDice(false);
+      setDiceThrow(false);
     } else if (selectedComunas.length < 2) {
       setSelectedComunas([...selectedComunas, comuna]);
     }
@@ -63,8 +67,17 @@ const Map = () => {
         setComunas(infoCommunes);
         setTroopClickeada(troop.contador);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          const errorMessage = error.response.data.error;
+          alert(errorMessage); // Mostrar el mensaje de error al usuario
+        } else {
+          console.error(error);
+        }
       });
   };
 
@@ -81,14 +94,39 @@ const Map = () => {
   };
 
   const handleAttackClick = () => {
-    const [comuna1, comuna2] = selectedComunas;
-    //Hacer colsulta a la api para ver si el ataue es valido
-    //Si es valido, hacer el ataque
-    //Por ahora sólo se puede atacar con un dado
-    setAttackMode(true);
-    setShowDice(true);
-    setDice1(1);
-    setDice2(1);
+    const [namecomuna1, namecomuna2] = selectedComunas;
+    const infoComuna1 = comunas.find((comuna) => comuna.name === namecomuna1);
+    const infoComuna2 = comunas.find((comuna) => comuna.name === namecomuna2);
+    setComuna1(infoComuna1);
+    setComuna2(infoComuna2);
+    if (!infoComuna1 || !infoComuna2) {
+      // Verificar si alguno de los objetos es undefined
+      alert("No se encontró alguna de las comunas seleccionadas");
+      console.log(selectedComunas);
+      return;
+    }
+    if (infoComuna1.Player.name === infoComuna2.Player.name) {
+      alert("No puedes atacar a una comuna aliada");
+      return;
+    }
+    const token = localStorage.getItem("token");
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/players`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const info = res.data;
+        setPlayerActual(info);
+        setAttackMode(true);
+        setShowDice(true);
+        setDice1(1);
+        setDice2(1);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleCancelClick = () => {
@@ -105,15 +143,51 @@ const Map = () => {
     setDice1(value);
     setDice2(value2);
     setDiceThrow(true);
-    setTimeout(() => {
-      if (value > value2) {
-        //Ataque exitoso
-        alert("¡Ganaste el ataque!");
-      } else {
-        //Ataque fallido
-        alert("El defensor fue más fuerte que tú :(");
-      }
-    }, 500);
+    let atackerCommuneID;
+    let defenderCommuneID;
+    if (playerActual.id === comuna1.playerID) {
+      atackerCommuneID = comuna1.id;
+      defenderCommuneID = comuna2.id;
+    } else {
+      atackerCommuneID = comuna2.id;
+      defenderCommuneID = comuna1.id;
+    }
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/atack`,
+        {
+          atackerCommuneID: atackerCommuneID,
+          defenderCommuneID: defenderCommuneID,
+          atackerDice: value,
+          defenderDice: value2,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        const atackerTroop = res.data.atackerTroop;
+        const defenderTroop = res.data.defenderTroop;
+        const defenderCommune = res.data.defenderCommune;
+        const message = res.data.message;
+        alert(message);
+        console.log(atackerTroop);
+      })
+      .catch((error) => {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          const errorMessage = error.response.data.error;
+          alert(errorMessage); // Mostrar el mensaje de error al usuario
+        } else {
+          console.error(error);
+        }
+      });
   };
 
   const handleEndTurnClick = () => {
@@ -177,9 +251,9 @@ const Map = () => {
           name="Penalolen"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
-          onClick={() => handleComunaClick("Penanolen")}
+          onClick={() => handleComunaClick("Penalolen")}
           className={
-            selectedComunas.includes("Penanolen") ? "selected" : "lightblue"
+            selectedComunas.includes("Penalolen") ? "selected" : "lightblue"
           }
         />
         <path
