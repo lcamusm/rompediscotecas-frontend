@@ -14,6 +14,7 @@ const Map = () => {
   const [comunas, setComunas] = useState([]);
   const [player, setPlayer] = useState(null);
   const [troop, setTroop] = useState(null);
+  const [availableTroops, setAvailableTroops] = useState(0);
   const [comunaClickeada, setComunaClickeada] = useState(null);
   const [playerClickeado, setPlayerClickeado] = useState(null);
   const [troopClickeada, setTroopClickeada] = useState(null);
@@ -31,10 +32,12 @@ const Map = () => {
 
   useEffect(() => {
     if (selectedComunas.length === 1) {
-      const comuna = selectedComunas[0];
-      setComunaClickeada(comuna);
-      setPlayerClickeado(player);
-      setTroopClickeada(troop);
+      const comunaName = selectedComunas[0];
+      const comuna = comunas.find((comuna) => comuna.name === comunaName);
+      setComunaClickeada(comunaName);
+      setPlayerClickeado(comuna.Player.name);
+      setTroopClickeada(comuna.Troop.contador);
+      setAvailableTroops(comuna.Player.newTroops);
     }
   }, [selectedComunas]);
 
@@ -55,8 +58,10 @@ const Map = () => {
         }
       )
       .then((res) => {
-        const info = res.data;
-        setComunas(info);
+        const troop = res.data.troop;
+        const infoCommunes = res.data.communes;
+        setComunas(infoCommunes);
+        setTroopClickeada(troop.contador);
       })
       .catch((err) => {
         console.log(err);
@@ -550,6 +555,7 @@ const Map = () => {
           </div>
           <div className="dialog-container">
             <div className="dialog-content">
+              <h4 className="add-title">Available Troops: {availableTroops}</h4>
               <h4 className="add-title">Choose Number of Troops to Add</h4>
               <input
                 className="add-input"
