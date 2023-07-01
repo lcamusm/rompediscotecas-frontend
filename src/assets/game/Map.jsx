@@ -193,6 +193,36 @@ const Map = () => {
   const handleEndTurnClick = () => {
     const token = localStorage.getItem("token");
     axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/game/end-turn`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        axios
+          .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            const info = res.data;
+            setComunas(info);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handlePoblarClick = () => {
+    const token = localStorage.getItem("token");
+    axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -619,6 +649,9 @@ const Map = () => {
       </svg>
       <div className="end-container">
         <button onClick={handleEndTurnClick}>End Turn</button>
+      </div>
+      <div>
+        <button onClick={handlePoblarClick}>Poblar</button>
       </div>
       {selectedComunas.length === 1 && (
         <div className="assing-container">
