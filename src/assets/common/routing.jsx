@@ -10,6 +10,7 @@ import AdminCheck from "../protected/AdminCheck";
 import LogoutButton from "../profile/Logout";
 import Signup from "../profile/Signup";
 import Play from "../game/Play";
+import WaitingRoom from "../game/SalaEspera";
 
 function Routing() {
   return (
@@ -27,6 +28,7 @@ function Routing() {
             <Route path="/admincheck" element={<AdminCheck />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/play" element={<Play />} />
+            <Route path="/waiting-room" element={<WaitingRoom />} />
         </Routes>
       </BrowserRouter>
     </>

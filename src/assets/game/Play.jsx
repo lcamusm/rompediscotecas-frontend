@@ -26,9 +26,10 @@ function Play() {
             console.log("Partida creada");
             console.log(response);
             setError(false);
-            navigate('/board');
+            navigate('/waiting-room');
         } catch (error) {     
             console.error("Debes iniciar sesión primero: ", error);
+            console.log(error)
             setError(true);
         }
     };
@@ -51,7 +52,7 @@ function Play() {
             console.log("Unión exitosa");
             console.log(response);
             setError(false); 
-            navigate('/board');
+            navigate('/waiting-room');
         } catch (error) {     
             console.error("Debes iniciar sesión primero: ", error);
             setError(true);
