@@ -193,7 +193,7 @@ const Map = () => {
   const handleEndTurnClick = () => {
     const token = localStorage.getItem("token");
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/game/end-turn`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/game/end-turn`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
