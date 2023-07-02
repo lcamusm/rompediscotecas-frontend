@@ -1,7 +1,7 @@
 import './Equipo.css'
 import Header from "./Header"
-import Erri from '../img/erri.jpg'
-import Luki from '../img/luki.jpg'
+import Erri from '../../../public/img/erri.jpg'
+import Luki from '../../../public/img/luki.jpg'
 
 function Equipo() {
     return (

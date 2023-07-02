@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import logo from '../img/logo.jpg'
+import logo from '../../../public/img/logo.jpg'
 import LogoutButton from "../profile/Logout";
 
 function Header() {

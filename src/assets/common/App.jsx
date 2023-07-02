@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthProvider from '../auth/AuthProvider';
-import imagenPrincipal from '../img/imagen-principal.jpg';
+import imagenPrincipal from '../../../public/img/imagen-principal.jpg'
 import './App.css';
 
 function App() {
