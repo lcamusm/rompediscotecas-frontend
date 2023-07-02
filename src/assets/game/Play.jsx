@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Play.css';
 import axios from 'axios';
+import VITE_BACKEND_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 
 function Play() {
@@ -15,7 +16,7 @@ function Play() {
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.sub;
             const response = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/players/create-game/${userId}`, 
+                `${VITE_BACKEND_URL}/players/create-game/${userId}`, 
                 {},
                 {
                     headers: {
@@ -41,7 +42,7 @@ function Play() {
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.sub;
             const response = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/players/join-game/${userId}`, 
+                `${VITE_BACKEND_URL}/players/join-game/${userId}`, 
                 {},
                 {
                     headers: {

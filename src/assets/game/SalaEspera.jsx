@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import VITE_BACKEND_URL from '../config';
 
 function WaitingRoom() {
     const { gameId } = useParams();
@@ -17,7 +18,7 @@ function WaitingRoom() {
             const token = localStorage.getItem('token');  
             try {
                 const response1 = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/players/`,
+                    `${VITE_BACKEND_URL}/players/`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -27,7 +28,7 @@ function WaitingRoom() {
                 const playerId = response1.data.id;
                 console.log("Player ID: ", playerId);
                 const response2 = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/game/${playerId}`, 
+                    `${VITE_BACKEND_URL}/game/${playerId}`, 
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -55,7 +56,7 @@ function WaitingRoom() {
         try {
             console.log(gameData.players);
             const response1 = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/cards/objetivo`,
+                `${VITE_BACKEND_URL}/cards/objetivo`,
                 {
                     "numberPlayers": gameData.players.length,
                     "playersID": gameData.players
@@ -68,7 +69,7 @@ function WaitingRoom() {
             );
             console.log("Objetivos asignados: ", response1.data);
             const response2 = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/boards/create-board`,
+                `${VITE_BACKEND_URL}/boards/create-board`,
                 {
                     "numberPlayers": gameData.players.length,
                     "playersID": gameData.players,

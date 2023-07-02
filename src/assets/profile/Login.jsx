@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { AuthContext } from '../auth/AuthContext';
+import VITE_BACKEND_URL from '../config';
 
 function Login() {
     const { token, setToken } = useContext(AuthContext);
@@ -13,7 +14,7 @@ function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`, {
+        axios.post(`${VITE_BACKEND_URL}/auth/login`, {
             username: username,
             password: password
         }) .then((response) => {

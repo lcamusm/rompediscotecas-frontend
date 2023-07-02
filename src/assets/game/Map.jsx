@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Map.css";
 import Dado from "./Dado";
+import VITE_BACKEND_URL from "../config";
 import axios from "axios";
 
 const Map = () => {
@@ -50,7 +51,7 @@ const Map = () => {
     const comuna = comunas.find((comuna) => comuna.name === comunaClickeada);
     axios
       .post(
-        `${import.meta.env.VITE_BACKEND_URL}/troops/assing`,
+        `${VITE_BACKEND_URL}/troops/assing`,
         {
           communeID: comuna.id,
           numTroops: troopsToAdd,
@@ -111,7 +112,7 @@ const Map = () => {
     }
     const token = localStorage.getItem("token");
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/players`, {
+      .get(`${VITE_BACKEND_URL}/players`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -155,7 +156,7 @@ const Map = () => {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `${import.meta.env.VITE_BACKEND_URL}/atack`,
+        `${VITE_BACKEND_URL}/atack`,
         {
           atackerCommuneID: atackerCommuneID,
           defenderCommuneID: defenderCommuneID,
@@ -193,7 +194,7 @@ const Map = () => {
   const handleEndTurnClick = () => {
     const token = localStorage.getItem("token");
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/game/end-turn`, {}, {
+      .post(`${VITE_BACKEND_URL}/game/end-turn`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -202,7 +203,7 @@ const Map = () => {
         const data = res.data;
         console.log(data);
         axios
-          .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
+          .get(`${VITE_BACKEND_URL}/communes`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -223,7 +224,7 @@ const Map = () => {
   const handlePoblarClick = () => {
     const token = localStorage.getItem("token");
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/communes`, {
+      .get(`${VITE_BACKEND_URL}/communes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
